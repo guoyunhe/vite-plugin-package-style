@@ -13,7 +13,7 @@ npm i -D vite-plugin-import-package-style
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import importPackageStyle from 'vite-plugin-import-package-style';
+import { importPackageStyle } from 'vite-plugin-import-package-style';
 
 export default defineConfig({
   plugins: [

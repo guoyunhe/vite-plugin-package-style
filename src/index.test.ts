@@ -1,4 +1,4 @@
-import importPackageStyle from '.';
+import { importPackageStyle } from '.';
 
 const code1 = `
 import {

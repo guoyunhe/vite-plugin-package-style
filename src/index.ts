@@ -19,13 +19,6 @@ async function styleExists(style: string) {
 const importRegex =
   /(?<=(?:[\s\n;])|^)(?:import[\s\n]*((?:(?<=[\s\n])type)?)(?=[\n\s*{])[\s\n]*)((?:(?:[_$\w][_$\w0-9]*)(?:[\s\n]+(?:as[\s\n]+(?:[_$\w][_$\w0-9]*)))?(?=(?:[\n\s]*,[\n\s]*[{*])|(?:[\n\s]+from)))?)[\s\n,]*((?:\*[\n\s]*(?:as[\s\n]+(?:[_$\w][_$\w0-9]*))(?=[\n\s]+from))?)[\s\n,]*((?:\{[n\s]*(?:(?:[_$\w][_$\w0-9]*)(?:[\s\n]+(?:as[\s\n]+(?:[_$\w][_$\w0-9]*)))?[\s\n]*,?[\s\n]*)*\}(?=[\n\s]*from))?)(?:[\s\n]*((?:from)?))[\s\n]*(?:["']([^"']*)(["']))[\s\n]*?;?/gm;
 
-export function transformCode(code: string) {
-  const match = code.matchAll(importRegex);
-  const packages = Array.from(match).map((arr) => arr[6]);
-  console.log(packages);
-  return code;
-}
-
 export interface ImportPackageStyleRule {
   // Include package names
   // Support glob matching, e.g. ['@ant-design/*', 'bootstrap-*']
@@ -45,7 +38,7 @@ export interface ImportPackageStyleOptions {
 /**
  * Vite plugin to automatically import styles from packages
  */
-export default function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin {
+export function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin {
   const cached: Record<string, string> = {};
   return {
     name: 'vite:import-package-style',
