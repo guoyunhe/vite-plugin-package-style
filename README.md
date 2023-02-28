@@ -1,15 +1,33 @@
 # vite-plugin-import-package-style
 
+Vite plugin to automatically import styles from packages
+
 ## Install
 
 ```bash
-npm i vite-plugin-import-package-style
+npm i -D vite-plugin-import-package-style
 ```
 
 ## Usage
 
 ```ts
-import { hello } from 'vite-plugin-import-package-style';
+// vite.config.ts
+import { defineConfig } from 'vite';
+import importPackageStyle from 'vite-plugin-import-package-style';
 
-hello('world');
+export default defineConfig({
+  plugins: [
+    importPackageStyle({
+      rules: [
+        {
+          include: ['foobar', '@foo/*'],
+          exclude: ['@foo/bar-*'],
+          resolveStyle: (pkg) => {
+            return `${pkg}/dist/index.css`;
+          },
+        },
+      ],
+    }),
+  ],
+});
 ```

@@ -42,6 +42,9 @@ export interface ImportPackageStyleOptions {
   rules: ImportPackageStyleRule[];
 }
 
+/**
+ * Vite plugin to automatically import styles from packages
+ */
 export default function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin {
   const cached: Record<string, string> = {};
   return {
