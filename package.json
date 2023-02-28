@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [
-    "node"
+    "vite",
+    "plugin",
+    "import",
+    "package",
+    "resolve",
+    "style",
+    "css",
+    "sass",
+    "less"
   ],
   "homepage": "https://github.com/guoyunhe/vite-plugin-import-package-style#readme",
   "bugs": {
@@ -14,7 +22,7 @@
     "url": "git+https://github.com/guoyunhe/vite-plugin-import-package-style.git"
   },
   "funding": "https://github.com/sponsors/guoyunhe",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0",
   "author": {
     "name": "Guo Yunhe",
     "email": "i@guoyunhe.me"
@@ -49,7 +57,13 @@
     "@guoyunhe/node-scripts": "^2.0.0",
     "@tsconfig/node16": "^1.0.0",
     "@types/jest": "^29.0.0",
+    "@types/micromatch": "^4.0.2",
     "@types/node": "^16.0.0",
-    "typescript": "^4.0.0"
+    "rabbit-lyrics": "^2.1.1",
+    "typescript": "^4.0.0",
+    "vite": "^4.1.4"
+  },
+  "dependencies": {
+    "micromatch": "^4.0.5"
   }
 }
