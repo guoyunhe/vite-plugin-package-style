@@ -77,7 +77,7 @@ export function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin
           styles
             .filter(Boolean)
             .map((style) => `import '${style}';`)
-            .join('\n') + code,
+            .join('') + code,
       };
     },
   };
