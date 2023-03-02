@@ -19,6 +19,9 @@ async function styleExists(style: string) {
 const importRegex =
   /(?<=(?:[\s\n;])|^)(?:import[\s\n]*((?:(?<=[\s\n])type)?)(?=[\n\s*{])[\s\n]*)((?:(?:[_$\w][_$\w0-9]*)(?:[\s\n]+(?:as[\s\n]+(?:[_$\w][_$\w0-9]*)))?(?=(?:[\n\s]*,[\n\s]*[{*])|(?:[\n\s]+from)))?)[\s\n,]*((?:\*[\n\s]*(?:as[\s\n]+(?:[_$\w][_$\w0-9]*))(?=[\n\s]+from))?)[\s\n,]*((?:\{[n\s]*(?:(?:[_$\w][_$\w0-9]*)(?:[\s\n]+(?:as[\s\n]+(?:[_$\w][_$\w0-9]*)))?[\s\n]*,?[\s\n]*)*\}(?=[\n\s]*from))?)(?:[\s\n]*((?:from)?))[\s\n]*(?:["']([^"']*)(["']))[\s\n]*?;?/gm;
 
+// Regular expression to filter JavaScript and TypeScript
+const sourceRegex = /\.[cm]?[tj]sx?$/;
+
 export interface ImportPackageStyleRule {
   // Include package names
   // Support glob matching, e.g. ['@ant-design/*', 'bootstrap-*']
@@ -43,7 +46,12 @@ export function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin
   return {
     name: 'vite:import-package-style',
     enforce: 'post',
-    transform: async (code: string) => {
+    transform: async (code: string, id: string) => {
+      // Ignore node_modules
+      if (id.includes('/node_modules/')) return;
+      // Transform only JS and TS
+      if (!sourceRegex.test(id)) return;
+
       const match = code.matchAll(importRegex);
       const packages = Array.from(match).map((arr) => arr[6]);
       const styles = await Promise.all(
