@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-import-package-style",
+  "name": "vite-plugin-package-style",
   "version": "1.0.4",
   "description": "Vite plugin to automatically import styles from packages",
   "keywords": [
@@ -13,13 +13,13 @@
     "sass",
     "less"
   ],
-  "homepage": "https://github.com/guoyunhe/vite-plugin-import-package-style#readme",
+  "homepage": "https://github.com/guoyunhe/vite-plugin-package-style#readme",
   "bugs": {
-    "url": "https://github.com/guoyunhe/vite-plugin-import-package-style/issues"
+    "url": "https://github.com/guoyunhe/vite-plugin-package-style/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guoyunhe/vite-plugin-import-package-style.git"
+    "url": "git+https://github.com/guoyunhe/vite-plugin-package-style.git"
   },
   "funding": "https://github.com/sponsors/guoyunhe",
   "license": "GPL-3.0",

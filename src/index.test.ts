@@ -1,4 +1,4 @@
-import { importPackageStyle } from '.';
+import { packageStyle } from '.';
 
 const code1 = `
 import {
@@ -30,13 +30,13 @@ import { foobar } from 'vite';
 
 describe('transform', () => {
   it('single import', async () => {
-    const pulgin = importPackageStyle({
+    const pulgin = packageStyle({
       rules: [{ include: ['rabbit-*'], resolveStyle: (pkg) => pkg + '/src/index.css' }],
     });
     expect((await (pulgin as any).transform(code1)).code).toBe(transformed1);
   });
   it('match packages', async () => {
-    const pulgin = importPackageStyle({
+    const pulgin = packageStyle({
       rules: [{ include: ['rabbit-*'], resolveStyle: (pkg) => pkg + '/src/index.css' }],
     });
     expect((await (pulgin as any).transform(code2)).code).toBe(transformed2);

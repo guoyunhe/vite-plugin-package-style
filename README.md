@@ -1,11 +1,11 @@
-# vite-plugin-import-package-style
+# vite-plugin-package-style
 
 Vite plugin to automatically import styles from packages
 
 ## Install
 
 ```bash
-npm i -D vite-plugin-import-package-style
+npm i -D vite-plugin-package-style
 ```
 
 ## Usage
@@ -13,11 +13,11 @@ npm i -D vite-plugin-import-package-style
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { importPackageStyle } from 'vite-plugin-import-package-style';
+import { packageStyle } from 'vite-plugin-package-style';
 
 export default defineConfig({
   plugins: [
-    importPackageStyle({
+    packageStyle({
       rules: [
         {
           include: ['foobar', '@foo/*'],
