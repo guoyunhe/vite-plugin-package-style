@@ -22,7 +22,7 @@ const importRegex =
 // Regular expression to filter JavaScript and TypeScript
 const sourceRegex = /\.[cm]?[tj]sx?$/;
 
-export interface ImportPackageStyleRule {
+interface ImportPackageStyleRule {
   // Include package names
   // Support glob matching, e.g. ['@ant-design/*', 'bootstrap-*']
   include: string[];
@@ -34,14 +34,13 @@ export interface ImportPackageStyleRule {
   resolveStyle: (packageName?: string) => string;
 }
 
-export interface ImportPackageStyleOptions {
+interface ImportPackageStyleOptions {
   rules: ImportPackageStyleRule[];
 }
-
 /**
  * Vite plugin to automatically import styles from packages
  */
-export function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin {
+function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin {
   const cached: Record<string, string> = {};
   return {
     name: 'vite:import-package-style',
@@ -82,3 +81,5 @@ export function importPackageStyle({ rules }: ImportPackageStyleOptions): Plugin
     },
   };
 }
+
+export = importPackageStyle;
