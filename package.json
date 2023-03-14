@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-package-style",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vite plugin to automatically import styles from packages",
   "keywords": [
     "vite",
@@ -27,8 +27,8 @@
     "name": "Guo Yunhe",
     "email": "i@guoyunhe.me"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
+  "main": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
