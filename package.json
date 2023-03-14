@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-package-style",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vite plugin to automatically import styles from packages",
   "keywords": [
     "vite",
@@ -22,7 +22,7 @@
     "url": "git+https://github.com/guoyunhe/vite-plugin-package-style.git"
   },
   "funding": "https://github.com/sponsors/guoyunhe",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "author": {
     "name": "Guo Yunhe",
     "email": "i@guoyunhe.me"
