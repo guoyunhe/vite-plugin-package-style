@@ -40,7 +40,7 @@ interface PackageStyleOptions {
 /**
  * Vite plugin to automatically import styles from packages
  */
-function packageStyle({ rules }: PackageStyleOptions): Plugin {
+export default function packageStyle({ rules }: PackageStyleOptions): Plugin {
   const cached: Record<string, string> = {};
   return {
     name: 'vite:package-style',
@@ -81,5 +81,3 @@ function packageStyle({ rules }: PackageStyleOptions): Plugin {
     },
   };
 }
-
-export = packageStyle;
