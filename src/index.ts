@@ -1,4 +1,5 @@
 import { stat } from 'fs/promises';
+import MagicString from 'magic-string';
 import micromatch from 'micromatch';
 import { join } from 'path';
 import type { Plugin } from 'vite';
@@ -53,30 +54,39 @@ export default function packageStyle({ rules }: PackageStyleOptions): Plugin {
 
       const match = code.matchAll(importRegex);
       const packages = Array.from(match).map((arr) => arr[6]);
-      const styles = await Promise.all(
-        packages.map(async (pkg) => {
-          let style = cached[pkg];
-          if (!style) {
-            rules.forEach((rule) => {
-              if (micromatch([pkg], rule.include, { ignore: rule.exclude }).length > 0) {
-                style = rule.resolveStyle(pkg);
+      const styles = (
+        await Promise.all(
+          packages.map(async (pkg) => {
+            let style = cached[pkg];
+            if (!style) {
+              rules.forEach((rule) => {
+                if (micromatch([pkg], rule.include, { ignore: rule.exclude }).length > 0) {
+                  style = rule.resolveStyle(pkg);
+                }
+              });
+              if (style && !(await styleExists(style))) {
+                style = '';
               }
-            });
-            if (style && !(await styleExists(style))) {
-              style = '';
+              cached[pkg] = style;
             }
-            cached[pkg] = style;
-          }
-          return style;
-        })
+            return style;
+          })
+        )
+      ).filter(Boolean);
+
+      if (!styles.length) return;
+
+      const magicString = new MagicString(code);
+      magicString.prepend(
+        styles
+          .map((style) => `import '${style}';\n`)
+          .join('')
+          .trim()
       );
 
       return {
-        code:
-          styles
-            .filter(Boolean)
-            .map((style) => `import '${style}';`)
-            .join('') + code,
+        code: magicString.toString(),
+        map: magicString.generateMap({ hires: true }),
       };
     },
   };
