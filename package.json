@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-package-style",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Vite plugin to automatically import styles from packages",
   "keywords": [
     "vite",
