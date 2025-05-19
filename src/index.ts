@@ -1,4 +1,4 @@
-import { stat } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import MagicString from 'magic-string';
 import micromatch from 'micromatch';
 import { join } from 'path';
@@ -8,8 +8,8 @@ async function styleExists(style: string) {
   const stylePath = join('node_modules', style);
 
   try {
-    await stat(stylePath);
-    return true;
+    const content = await readFile(stylePath, 'utf-8');
+    return Boolean(content.trim());
   } catch (e) {
     return false;
   }
