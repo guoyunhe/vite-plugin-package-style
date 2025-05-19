@@ -1,14 +1,18 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-    "types": [
-      "node",
-      "jest",
-      "@guoyunhe/node-scripts/global"
-    ]
+    "types": ["node", "jest", "vitest/globals", "rive/globals"],
+    "allowJs": true,
+    "checkJs": false,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2020"
   },
-  "include": [
-    "src"
-  ]
+  "exclude": [".rive", "build", "coverage", "dist", "node_modules"]
 }
